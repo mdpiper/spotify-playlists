@@ -1,0 +1,3 @@
+[submodule "exportify"]
+	path = exportify
+	url = https://github.com/watsonbox/exportify
