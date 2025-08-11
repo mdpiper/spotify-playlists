@@ -7,17 +7,18 @@ import yaml
 
 
 year = "2025"
+input_dir = pathlib.Path("playlists") / year
 output_dir = "yaml"
 
 os.makedirs(output_dir, exist_ok=True)
-csv_files = glob.glob("*.csv", root_dir=year)
+csv_files = glob.glob("*.csv", root_dir=input_dir)
 
 for playlist_file in csv_files:
     playlist_name, _ = os.path.splitext(playlist_file)
     yaml_file = f"{output_dir}/{playlist_name}.yaml"
     print(f"- {yaml_file}")
 
-    playlist = pandas.read_csv(pathlib.Path(year) / playlist_file)
+    playlist = pandas.read_csv(input_dir / playlist_file)
     playlist_dict = playlist.to_dict("index")
 
     with open(yaml_file, "w") as fp:
